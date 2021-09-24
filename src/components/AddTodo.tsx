@@ -8,15 +8,18 @@ interface Props {
 
 const AddTodo = ({ task, onSubmit, onChnage }: Props) => {
   return (
-    <form onSubmit={onSubmit}>
-      <label htmlFor="task"></label>
+    <form className="flex justify-center w-full" onSubmit={onSubmit}>
       <input
+        className=" rounded shadow p-2 text-gray-500 mr-2 placeholder-gray-200"
         type="text"
         name="task"
         value={task}
         onChange={onChnage}
+        placeholder="do ..."
       />
-      <button type="submit">Add</button>
+      <button className="shadow rounded text-gray-600 px-3" type="submit">
+        Add
+      </button>
     </form>
   );
 };

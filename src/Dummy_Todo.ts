@@ -4,7 +4,7 @@ export const todoData: TodoData[] = [
   {
     id: "1",
     isCompleted: false,
-    task: "Do #1 Item in my Inbox",
+    task: "Do a weekend project",
   },
   {
     id: "2",

@@ -56,24 +56,26 @@ const Todo = () => {
   };
 
   return (
-    <div>
+    <div className="w-10/12 sm:w-2/3 lg:w-2/5 max-w-2xl flex flex-col items-center">
       <AddTodo
         onSubmit={submitTodoHandler}
         onChnage={changeTodoHandler}
         task={task}
       />
-      {todos.map((todo) => {
-        return (
-          <Row
-            todo={todo}
-            onDelete={deleteTodoHandler}
-            onCheck={checkTodoHandler}
-          />
-        );
-      })}
-
-      {hasTodo && <p>{`${remainingTodos} of ${todoLength}`}</p>}
-      {!hasTodo && <p>Add new todo!</p>}
+      <div className="h-10" />
+        {todos.map((todo) => {
+          return (
+            <Row
+              todo={todo}
+              onDelete={deleteTodoHandler}
+              onCheck={checkTodoHandler}
+            />
+          );
+        })}
+        {hasTodo && <p className="text-gray-300">{`${remainingTodos} of ${todoLength}`}</p>}
+        {!hasTodo && (
+          <p className="text-gray-400 mb-5 text-xlcapitalize ">Add new todo!</p>
+        )}
     </div>
   );
 };

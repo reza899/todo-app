@@ -3,7 +3,7 @@ import Todo from "./components/Todo";
 
 function App() {
   return (
-    <div>
+    <div className="flex justify-center items-center h-screen bg-gray-100">
       <Todo />
     </div>
   );
