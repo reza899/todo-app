@@ -1,26 +1,26 @@
 import React, { useState } from "react";
-import { todoData } from "../Dummy_Todo";
+import useLocalStorage from "../hooks/useLocalStorage";
 import { TodoData } from "../models/Todo";
 import AddTodo from "./AddTodo";
 import Row from "./Row";
 
 const Todo = () => {
-  const [todos, setTodos] = useState(todoData);
   const [task, setTask] = useState("");
+  const [todos, setTodos] = useLocalStorage<Array<TodoData>>("todos", []);
 
-  const todoLength = todos.length;
-  const hasTodo = todoLength > 0;
-  const remainingTodos = todos.filter(
+  const todoLength = todos?.length;
+  const hasTodo = todoLength && todoLength > 0;
+  const remainingTodos = todos?.filter(
     (todo) => todo.isCompleted !== true
   ).length;
 
   const deleteTodoHandler = (id: string) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
+    const newTodos = todos?.filter((todo) => todo.id !== id);
     setTodos(newTodos);
   };
 
   const checkTodoHandler = (id: string) => {
-    const newTodos = todos.map((todo) => {
+    const newTodos = todos?.map((todo) => {
       if (todo.id === id) {
         return {
           ...todo,
@@ -39,7 +39,7 @@ const Todo = () => {
   };
 
   const addTodoHandler = (todo: TodoData) => {
-    const newTodos = [...todos, todo];
+    const newTodos = [...todos!, todo];
     setTodos(newTodos);
     setTask("");
   };
@@ -63,19 +63,24 @@ const Todo = () => {
         task={task}
       />
       <div className="h-10" />
-        {todos.map((todo) => {
+      <div className="w-full">
+        {todos?.map((todo) => {
           return (
             <Row
+              key={todo.id}
               todo={todo}
               onDelete={deleteTodoHandler}
               onCheck={checkTodoHandler}
             />
           );
         })}
-        {hasTodo && <p className="text-gray-300">{`${remainingTodos} of ${todoLength}`}</p>}
-        {!hasTodo && (
-          <p className="text-gray-400 mb-5 text-xlcapitalize ">Add new todo!</p>
-        )}
+      </div>
+      {hasTodo && (
+        <p className="text-gray-300">{`${remainingTodos} of ${todoLength}`}</p>
+      )}
+      {!hasTodo && (
+        <p className="text-gray-400 mb-5 text-xlcapitalize ">Add new todo!</p>
+      )}
     </div>
   );
 };
