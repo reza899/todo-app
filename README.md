@@ -11,3 +11,12 @@ By using localStorage Todos persist.
 <img style="display:inline" height=400 src="https://user-images.githubusercontent.com/116783/135504380-c6f6aa91-a3ed-400e-9adb-63c8c11cf3ee.png" />
 </div>
 
+
+## :handshake: Contributing
+
+Contributions, issues and feature requests are welcome!
+Feel free to check the [issues page](https://github.com/reza899/todo-app/issues).
+
+## Show your support
+
+Give a :star:️ if you like this project!
